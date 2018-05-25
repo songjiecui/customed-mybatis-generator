@@ -1,0 +1,1 @@
+# customed-mybatis-generator
