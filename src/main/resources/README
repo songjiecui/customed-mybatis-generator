@@ -1,0 +1,8 @@
+使用方法参考：
+http://blog.csdn.net/sunny243788557/article/details/45166397
+http://www.mybatis.org/generator/running/runningWithMaven.html
+http://blog.csdn.net/zl18310999566/article/details/54097273
+非默认配置文件，参考如下命令：
+-Dmybatis.generator.overwrite=true -Dmybatis.generator.configurationFile=src/main/resources/generatorConfig-another.xml mybatis-generator:generate -e
+
+generatorConfig.xml为默认配置文件。
