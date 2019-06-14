@@ -455,8 +455,13 @@ public class MysqlGenerator {
   	    }else if (filePath.endsWith(".jar")) {//截取路径中的jar包名,可执行jar包运行的结果里包含".jar"
   	        filePath = filePath.substring(0, filePath.lastIndexOf(File.separator) + 1);
   	    }
-  	    System.out.println("jar包所在目录："+filePath);
-        return filePath+"\\mysqlGenerator.jar";
+  	   
+  	    if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")) {
+  	    	 System.out.println("WINDOWS jar包所在目录："+filePath+"\\mysqlGenerator.jar");
+  	    	return filePath+"\\mysqlGenerator.jar";
+		} 
+  	  System.out.println("LINUX jar包所在目录："+filePath+"\\mysqlGenerator.jar");
+			return filePath+File.separator+"mysqlGenerator.jar";
 	    }
   
   
