@@ -9,6 +9,8 @@ import org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl;
 import org.mybatis.generator.internal.types.Jdbc4Types;
 import org.mybatis.generator.internal.util.StringUtility;
 
+import com.alibaba.fastjson.JSON;
+
 import java.math.BigDecimal;
 import java.sql.Types;
 import java.util.*;
@@ -123,6 +125,7 @@ public class MyJavaTypeResolver implements JavaTypeResolver {
         if (jdbcTypeInformation == null) {
             switch (introspectedColumn.getJdbcType()) {
                 case Types.DECIMAL:
+                	answer = new FullyQualifiedJavaType(Float.class.getName());break;//这里就是更改DECIMAL——》float
                 case Types.NUMERIC:
                     if (introspectedColumn.getScale() > 0
                             || introspectedColumn.getLength() > 18
@@ -181,6 +184,7 @@ public class MyJavaTypeResolver implements JavaTypeResolver {
 
     @Override
     public void setContext(Context context) {
+    	System.out.println("1111111111"+JSON.toJSONString(context));
         this.context = context;
     }
 
