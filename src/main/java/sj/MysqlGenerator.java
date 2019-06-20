@@ -304,7 +304,7 @@ public class MysqlGenerator {
         	  JOptionPane.showMessageDialog( null,"请选择要生成的表才能把文件保存到本地!");
               return;
         }
-        String aa = buildDtoXml(getSelectTables());
+        String aa = buildDtoXml(getSelectTables(),ip,port,user,password,dataBase);
         try {
 			 boolean res=writeTxtFile(aa,new File(configFilePath.getText()));
 	            if(!res){
@@ -364,8 +364,8 @@ public class MysqlGenerator {
         }
         tableList.setListData(tableNames.toArray());
     }
-    public String buildDtoXml(List<Table> tables){
-    	
+    public String buildDtoXml(List<Table> tables,String ip,String port,String user,String password,String dataBase){
+    	System.out.println(ip+":"+port+":"+user+":"+password+":"+dataBase);
     	    StringBuilder sb=new StringBuilder();
     	    sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
     	    sb.append("<!DOCTYPE generatorConfiguration PUBLIC \"-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN\" \"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd\">\n"); 
@@ -377,7 +377,7 @@ public class MysqlGenerator {
     	    sb.append("  <plugin type=\"org.mybatis.generator.plugins.SerializablePlugin\" />\n");
     	    sb.append("  <plugin type=\"org.mybatis.generator.OverIsMergeablePlugin\" />\n");
     	    sb.append("  <commentGenerator type=\"org.mybatis.generator.MyCommentGenerator\"></commentGenerator>\n");
-    	    sb.append("      <jdbcConnection driverClass=\"com.mysql.jdbc.Driver\" connectionURL=\"jdbc:mysql://47.94.144.144:3306/ttrisk_center?characterEncoding=UTF-8&amp;tinyInt1isBit=false\" userId=\"appuser\" password=\"appuser007\"/>\n");
+    	    sb.append("      <jdbcConnection driverClass=\"com.mysql.jdbc.Driver\" connectionURL=\"jdbc:mysql://"+ip+":"+port+"/"+dataBase+"?characterEncoding=UTF-8&amp;tinyInt1isBit=false\" userId=\""+user+"\" password=\""+password+"\"/>\n");
     	    sb.append("      <javaTypeResolver type=\"org.mybatis.generator.MyJavaTypeResolver\">\n");
     	    sb.append("      <property name=\"forceBigDecimals\" value=\"true\" />\n");
     	    sb.append("      </javaTypeResolver>\n");
